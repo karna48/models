@@ -190,7 +190,7 @@ class ObjectDetectionEvaluator(DetectionEvaluator):
     else:
       groundtruth_difficult = None
       if not len(self._image_ids) % 1000:
-        logging.warn(
+        logging.warning(
             'image %s does not have groundtruth difficult flag specified',
             image_id)
     groundtruth_masks = None
@@ -437,7 +437,7 @@ class OpenImagesDetectionEvaluator(ObjectDetectionEvaluator):
     else:
       groundtruth_group_of = None
       if not len(self._image_ids) % 1000:
-        logging.warn(
+        logging.warning(
             'image %s does not have groundtruth group_of flag specified',
             image_id)
     self._evaluation.add_single_ground_truth_image_info(
@@ -529,7 +529,7 @@ class ObjectDetectionEvaluation(object):
         The mask values range from 0 to 1.
     """
     if image_key in self.groundtruth_boxes:
-      logging.warn(
+      logging.warning(
           'image %s has already been added to the ground truth database.',
           image_key)
       return
@@ -583,7 +583,7 @@ class ObjectDetectionEvaluation(object):
                        len(detected_scores), len(detected_class_labels))
 
     if image_key in self.detection_keys:
-      logging.warn(
+      logging.warning(
           'image %s has already been added to the detection result database',
           image_key)
       return
@@ -669,7 +669,7 @@ class ObjectDetectionEvaluation(object):
         mean_corloc: Mean CorLoc score for each class, float scalar
     """
     if (self.num_gt_instances_per_class == 0).any():
-      logging.warn(
+      logging.warning(
           'The following classes have no ground truth examples: %s',
           np.squeeze(np.argwhere(self.num_gt_instances_per_class == 0)) +
           self.label_id_offset)
